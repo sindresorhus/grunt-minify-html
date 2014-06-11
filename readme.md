@@ -4,7 +4,7 @@
 
 *Issues with the output should be reported on the minimize [issue tracker](https://github.com/Moveo/minimize/issues).*
 
-The differs from [grunt-contrib-htmlmin](https://github.com/gruntjs/grunt-contrib-htmlmin) in that it uses a [HTML-parser instead of a bunch of fragile regexes](https://github.com/Moveo/minimize#credits).
+The differs from [grunt-contrib-htmlmin](https://github.com/gruntjs/grunt-contrib-htmlmin) in that it uses a [HTML-parser](https://github.com/Moveo/minimize#credits) instead of a [bunch of fragile regexes](https://github.com/kangax/html-minifier/blob/27fce5b5a7c166ea6149fba78a418e475658f075/src/htmlparser.js#L35-L41).
 
 
 ## Install
