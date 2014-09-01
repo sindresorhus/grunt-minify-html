@@ -1,25 +1,47 @@
 'use strict';
+var fs = require('fs');
+var path = require('path');
 var eachAsync = require('each-async');
+var mkdirp = require('mkdirp');
 var Minimize = require('minimize');
 
 module.exports = function (grunt) {
 	grunt.registerMultiTask('minifyHtml', 'Minify HTML', function () {
+		var done = this.async();
 		var options = this.options();
 
 		eachAsync(this.files, function (el, i, next) {
 			var minimize = new Minimize(options);
 			var src = el.src[0];
 
-			minimize.parse(grunt.file.read(src), function (err, data) {
+			fs.readFile(src, 'utf8', function (err, str) {
 				if (err) {
-					grunt.warn(err);
 					next(err);
 					return;
 				}
 
-				grunt.file.write(el.dest, data);
-				next();
+				minimize.parse(str, function (err, min) {
+					if (err) {
+						next(err);
+						return;
+					}
+
+					mkdirp(path.dirname(el.dest), function () {
+						if (err) {
+							next(err);
+							return;
+						}
+
+						fs.writeFile(el.dest, min, next);
+					});
+				});
 			});
-		}, this.async());
+		}, function (err) {
+			if (err) {
+				grunt.warn(err);
+			}
+
+			done();
+		});
 	});
 };
