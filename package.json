@@ -29,7 +29,7 @@
   ],
   "dependencies": {
     "each-async": "^1.0.0",
-    "minimize": "^0.8.2",
+    "minimize": "^0.9.0",
     "mkdirp": "^0.5.0"
   },
   "devDependencies": {
