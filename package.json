@@ -1,6 +1,6 @@
 {
   "name": "grunt-minify-html",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Minify HTML",
   "license": "MIT",
   "repository": "sindresorhus/grunt-minify-html",
