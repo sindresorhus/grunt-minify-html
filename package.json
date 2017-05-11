@@ -10,10 +10,10 @@
     "url": "sindresorhus.com"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
-    "test": "xo && grunt"
+    "test": "xo && grunt && ava && del 'test/tmp/**'"
   },
   "files": [
     "tasks"
@@ -29,14 +29,13 @@
   ],
   "dependencies": {
     "each-async": "^1.0.0",
-    "minimize": "^1.1.0",
-    "mkdirp": "^0.5.0"
+    "make-dir": "^1.0.0",
+    "minimize": "^2.1.0"
   },
   "devDependencies": {
+    "ava": "*",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-simple-mocha": "^0.4.0",
     "xo": "*"
   },
   "peerDependencies": {

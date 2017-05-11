@@ -1,42 +1,37 @@
 'use strict';
-var fs = require('fs');
-var path = require('path');
-var eachAsync = require('each-async');
-var mkdirp = require('mkdirp');
-var Minimize = require('minimize');
+const fs = require('fs');
+const path = require('path');
+const eachAsync = require('each-async');
+const makeDir = require('make-dir');
+const Minimize = require('minimize');
 
-module.exports = function (grunt) {
+module.exports = grunt => {
 	grunt.registerMultiTask('minifyHtml', 'Minify HTML', function () {
-		var done = this.async();
-		var options = this.options();
+		const done = this.async();
+		const options = this.options();
 
-		eachAsync(this.files, function (el, i, next) {
-			var minimize = new Minimize(options);
-			var src = el.src[0];
+		eachAsync(this.files, (el, i, next) => {
+			const minimize = new Minimize(options);
+			const src = el.src[0];
 
-			fs.readFile(src, 'utf8', function (err, str) {
+			fs.readFile(src, 'utf8', (err, str) => {
 				if (err) {
 					next(err);
 					return;
 				}
 
-				minimize.parse(str, function (err, min) {
+				minimize.parse(str, (err, min) => {
 					if (err) {
 						next(err);
 						return;
 					}
 
-					mkdirp(path.dirname(el.dest), function () {
-						if (err) {
-							next(err);
-							return;
-						}
-
+					makeDir(path.dirname(el.dest)).then(() => {
 						fs.writeFile(el.dest, min, next);
-					});
+					}).catch(next);
 				});
 			});
-		}, function (err) {
+		}, err => {
 			if (err) {
 				grunt.warn(err);
 			}

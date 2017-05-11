@@ -1,9 +1,9 @@
-'use strict';
-/* eslint-env mocha */
-var assert = require('assert');
-var grunt = require('grunt');
+import fs from 'fs';
+import test from 'ava';
 
-it('should minify HTML', function () {
-	var actual = grunt.file.read('test/tmp/fixture.html');
-	assert.strictEqual(actual, '<div class="slide nodejs"></div>');
+test(t => {
+	t.is(
+		fs.readFileSync('test/tmp/fixture.html', 'utf8'),
+		'<div class="slide nodejs"></div>'
+	);
 });

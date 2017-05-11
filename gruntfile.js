@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function (grunt) {
+module.exports = grunt => {
 	grunt.initConfig({
 		minifyHtml: {
 			test: {
@@ -7,18 +7,9 @@ module.exports = function (grunt) {
 					'test/tmp/fixture.html': 'test/fixture.html'
 				}
 			}
-		},
-		simplemocha: {
-			test: ['test/test.js']
-		},
-		clean: {
-			test: ['test/tmp/**']
 		}
 	});
 
 	grunt.loadTasks('tasks');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-simple-mocha');
-
-	grunt.registerTask('default', ['clean', 'minifyHtml', 'simplemocha', 'clean']);
+	grunt.registerTask('default', ['minifyHtml']);
 };
