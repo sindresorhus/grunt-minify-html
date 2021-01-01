@@ -1,4 +1,4 @@
-# grunt-minify-html [![Build Status](https://travis-ci.org/sindresorhus/grunt-minify-html.svg?branch=master)](https://travis-ci.org/sindresorhus/grunt-minify-html)
+# grunt-minify-html
 
 > Minify HTML using [minimize](https://github.com/Swaagie/minimize)
 
